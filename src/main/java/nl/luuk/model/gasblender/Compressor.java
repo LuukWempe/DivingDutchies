@@ -1,4 +1,4 @@
-package nl.luuk;
+package nl.luuk.model.gasblender;
 
 public class Compressor {
 
