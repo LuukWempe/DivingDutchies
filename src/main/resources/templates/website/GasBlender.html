@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Young Divers Gas Blender</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+    <script src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
+    <script src="../../static/elements.js"></script>
+    <script src="/checkbox.js"></script>
+
+</head>
+<body style="background-color: cadetblue">
+
+  <div th:insert="~{./website/header :: header}"></div>
+    <script>$('#gasblender').addClass('active');</script>
+    
+    
+
+<div style="margin-top: 20px;"></div>
+
+    <div class="column">
+            <div class="ui segment" style="margin-left: 20px;margin-right: 20px;">
+                <h1>Gas Blender v1.0<h1>
+
+                <div class="ui divider"></div>
+            
+
+	<form class="ui form" method="post" th:action="@{/gasblender}"
+		style="margin-left: 25px; margin-right: 25px;"
+		th:object="${blender}">
+		<div class="ui grid">
+
+			<div class="three column row">
+				<div class="column">
+					<label>Oxygen content</label>
+				</div>
+				<div class="column">
+					<input placeholder="current oxygen content %" type="text" th:text="${blender.start_cyl.o2_vol}"
+						th:name="c1_o2" th:value="${blender.start_cyl.o2_vol}">
+				</div>
+				<div class="column">
+					<input placeholder="desired oxygen content %" type="text"
+						th:name="c2_o2" th:value="${blender.desired_cyl.o2_vol}">
+				</div>
+			</div>
+
+			<div class="three column row">
+				<div class="column">
+					<label>Nitrogen content</label>
+				</div>
+				<div class="column">
+					<input placeholder="current nitrogen content %" type="text"
+						th:name="c1_n2" th:value="${blender.c1_n2}">
+				</div>
+				<div class="column">
+					<input placeholder="desired nitrogen content %" type="text"
+						th:name="c2_n2" th:value="${blender.c2_n2}">
+				</div>
+			</div>
+
+			<div class="three column row">
+				<div class="column">
+					<label>Helium content</label>
+				</div>
+				<div class="column">
+					<input placeholder="current Oxygen content %" type="text"
+						th:name="c1_he" th:value="${blender.c1_he}">
+				</div>
+				<div class="column">
+					<input placeholder="desired Oxygen content %" type="text"
+						th:name="c2_he" th:value="${blender.c2_he}">
+				</div>
+			</div>
+
+
+
+		</div>
+		<h4 class="ui dividing header">Blending Method</h4>
+		<div class="column">
+			<div class="ui radio checkbox">
+				<input type="checkbox" name="partial" value="PARTIAL" onclick="uncheckContinues()"> <label>Partial Blending </label>
+			</div>
+		</div>
+		<div class="column">
+
+			<div class="ui radio checkbox">
+				<input type="checkbox" name="continues" value="CONTINUES" onclick="uncheckPartial()"> <label>Continues	Blending </label>
+			</div>
+		</div>
+		<h4 class="ui dividing header"></h4>
+		<div class="column">
+			<button class="ui teal button"
+				style="margin-left: 5px; margin-right: 25px;" type="submit">Blend!</button>
+		</div>
+
+	</form>
+	</div>
+    </div>
+
+</body>

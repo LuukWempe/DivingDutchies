@@ -8,9 +8,17 @@ public class Blender {
    BlendMethod blendMethod;
    Compressor compressor;
    BlendPlan blendPlan;
+   double topOff_o2_fraction;
    
    //Constructors
-   public Blender(){}
+   public Blender(){
+	   this.start_cyl = new Cylinder();
+	   this.desired_cyl = new Cylinder();
+	   this.current_cyl = start_cyl;
+	   this.compressor = new Compressor();
+	   this.blendPlan = new BlendPlan();
+	   this.topOff_o2_fraction = 0.21;
+   }
    
    public Blender(Cylinder start_cyl, Cylinder current_cyl, Cylinder desired_cyl, Compressor compressor){
 	 this.start_cyl = start_cyl;
@@ -19,6 +27,7 @@ public class Blender {
      this.desired_cyl = desired_cyl;
      this.compressor = compressor;
      this.blendPlan = new BlendPlan();
+     this.topOff_o2_fraction = 0.21;
    }
    
    public Cylinder generateDelta(){
@@ -41,4 +50,62 @@ public class Blender {
        c.printAttribute();
        return c;
    }
+
+public Cylinder getStart_cyl() {
+	return start_cyl;
+}
+
+public void setStart_cyl(Cylinder start_cyl) {
+	this.start_cyl = start_cyl;
+}
+
+public Cylinder getCurrent_cyl() {
+	return current_cyl;
+}
+
+public void setCurrent_cyl(Cylinder current_cyl) {
+	this.current_cyl = current_cyl;
+}
+
+public Cylinder getDesired_cyl() {
+	return desired_cyl;
+}
+
+public void setDesired_cyl(Cylinder desired_cyl) {
+	this.desired_cyl = desired_cyl;
+}
+
+public BlendMethod getBlendMethod() {
+	return blendMethod;
+}
+
+public void setBlendMethod(BlendMethod blendMethod) {
+	this.blendMethod = blendMethod;
+}
+
+public Compressor getCompressor() {
+	return compressor;
+}
+
+public void setCompressor(Compressor compressor) {
+	this.compressor = compressor;
+}
+
+public BlendPlan getBlendPlan() {
+	return blendPlan;
+}
+
+public void setBlendPlan(BlendPlan blendPlan) {
+	this.blendPlan = blendPlan;
+}
+
+public double getTopOff_o2_fraction() {
+	return topOff_o2_fraction;
+}
+
+public void setTopOff_o2_fraction(double topOff_o2_fraction) {
+	this.topOff_o2_fraction = topOff_o2_fraction;
+}
+   
+   
 }

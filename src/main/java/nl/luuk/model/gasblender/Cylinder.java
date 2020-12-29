@@ -9,7 +9,13 @@ public class Cylinder {
    double cyl_press;
    
    //Constructors
-   public Cylinder(){}
+   public Cylinder(){
+	   this.o2_vol = 0.0;
+	   this.n2_vol = 0.0;
+	   this.he_vol = 0.0; 
+	   this.cyl_size = 10;
+	   this.cyl_press = 0.0;
+   }
    
    public Cylinder(double o2_frac, double n2_frac, double he_frac, int cyl_size, double cyl_press){
      this.o2_vol = o2_frac * cyl_size * cyl_press;

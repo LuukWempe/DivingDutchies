@@ -1,7 +1,10 @@
 package nl.luuk.controller;
 
 import nl.luuk.database.DiverRepository;
+import nl.luuk.model.gasblender.BlendMethod;
+import nl.luuk.model.gasblender.Blender;
 import nl.luuk.services.DiverService;
+import nl.luuk.services.GasBlenderService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +24,10 @@ public class WebsiteController {
 	
 
 	@Autowired
-	private DiverService diverService; 
+	private DiverService diverService;
+	
+	@Autowired
+	private GasBlenderService gasBlenderService;
 	
 	@Autowired
 	private DiverRepository diverRepository;
@@ -45,6 +51,19 @@ public class WebsiteController {
 	public String photos() {
 		return "website/photos";
 	}
+	
+	@GetMapping("/gasblender")
+	public String gasblender(Model model) {
+		model.addAttribute("blender", gasBlenderService.getBlender());
+		return "website/gasblender";
+	}
+	
+	@PostMapping("/gasblender")
+	public String postGasBlender(Blender blender) {
+		gasBlenderService.blend(blender);
+		return "redirect:/gasblender";
+	}
+
 	
 	@GetMapping("/calendar")
 	public String calendar() {
