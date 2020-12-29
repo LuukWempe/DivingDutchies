@@ -7,7 +7,7 @@ public class BlendPlan {
   List<String> taskList = new ArrayList<>(); 
   
   public BlendPlan(){
-    this.taskList.add("Tasklist for Blending"); 
+    this.taskList.add("\n[-- Tasklist for Blending --] \n"); 
   }
   
   public String toString(){

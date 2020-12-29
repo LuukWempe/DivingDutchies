@@ -7,27 +7,15 @@ public class ContinuesBlender extends Blender {
 
    public ContinuesBlender(){}
    
-   public ContinuesBlender(Cylinder current_cylinder, Cylinder desired_cylinder, TopOffGas topOffGas, Compressor compressor){
-	     this.current_cylinder = current_cylinder;
-	     this.desired_cylinder = desired_cylinder;
-	     this.topOffGas = topOffGas;
+   public ContinuesBlender(Cylinder current_cylinder, Cylinder desired_cylinder, Compressor compressor){
+	     this.current_cyl = current_cylinder;
+	     this.desired_cyl = desired_cylinder;
 	     this.compressor = compressor;
 	     this.blendPlan = new BlendPlan();
 	   }
   
-   public BlendPlan blend(Cylinder delta){
-	   switch(topOffGas){
-       case AIR:
-       blendPlan.taskList.add("Partialy blending with AIR top off");
-         break;
-         
-       case O2:
-       blendPlan.taskList.add("Partialy blending with O2 top off");
-         break;
-       
-       default:
-       blendPlan.taskList.add("Unknown top off gas");
-     }
+   public BlendPlan blend(Cylinder delta, double topOff_o2_fraction){
+	   
      return blendPlan;
    }
 
