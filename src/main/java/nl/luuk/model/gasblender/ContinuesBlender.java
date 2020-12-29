@@ -8,8 +8,8 @@ public class ContinuesBlender extends Blender {
    public ContinuesBlender(){}
    
    public ContinuesBlender(Cylinder current_cylinder, Cylinder desired_cylinder, Compressor compressor){
-	     this.current_cylinder = current_cylinder;
-	     this.desired_cylinder = desired_cylinder;
+	     this.current_cyl = current_cylinder;
+	     this.desired_cyl = desired_cylinder;
 	     this.compressor = compressor;
 	     this.blendPlan = new BlendPlan();
 	   }

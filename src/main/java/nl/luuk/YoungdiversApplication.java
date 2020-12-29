@@ -16,7 +16,7 @@ public class YoungdiversApplication {
 		//SpringApplication.run(YoungdiversApplication.class, args);
 		
 		System.out.println("Hello World!"); 
-	    Cylinder c1 = new Cylinder(0.32, 0.58, 0.10, 10, 50); 
+	    Cylinder c1 = new Cylinder(0.21, 0.79, 0.00, 10, 50); 
 	    Cylinder c2 = new Cylinder(0.17, 0.48, 0.35, 10, 220);
 	    Compressor c = new Compressor(200);
 	    BlendMethod bm = BlendMethod.PARTIAL;
