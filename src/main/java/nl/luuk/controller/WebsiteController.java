@@ -84,10 +84,11 @@ public class WebsiteController {
 	@PostMapping("/gasblender/{blenderId}")
 	public String postGasBlender(BlenderDao blenderDao, @RequestParam(value="blenderId", required=false) Long blenderId) {
 		blenderDaoRepository.save(blenderDao);
+		
 		//get de blenderId from the repository
-		
 		BlendPlan plan = gbs.startBlender(blenderDaoRepository.findByBlenderId(blenderId));
-		
+		blenderDao.setBlendPlan(plan.toString());
+				
 		return "redirect:/gasblender/" + blenderId;
 	}
 

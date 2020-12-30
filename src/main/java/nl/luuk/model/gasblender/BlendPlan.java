@@ -13,7 +13,8 @@ public class BlendPlan {
   public String toString(){
     String result = "";
     for (String t : taskList){
-      result += t;
+      result += t + ",";
+      
       System.out.println(t);
     }
     return result;

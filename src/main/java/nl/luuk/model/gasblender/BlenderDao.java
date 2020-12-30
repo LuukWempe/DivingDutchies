@@ -50,6 +50,9 @@ public class BlenderDao {
 	@Column(name="topOff")
 	double topOff;
 	
+	@Column(name="blendplan", columnDefinition="varchar2(100)")
+	String blendPlan;
+	
 	public BlenderDao() {
 		this.bm = "PARTIAL";
 		this.topOff = 21;
@@ -175,6 +178,18 @@ public class BlenderDao {
 
 	public void setC2_pressure(double c2_pressure) {
 		this.c2_pressure = c2_pressure;
+	}
+
+
+
+	public String getBlendPlan() {
+		return blendPlan;
+	}
+
+
+
+	public void setBlendPlan(String blendPlan) {
+		this.blendPlan = blendPlan;
 	}
 	
 	
