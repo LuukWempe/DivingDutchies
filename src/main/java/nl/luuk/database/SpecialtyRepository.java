@@ -7,6 +7,6 @@ import nl.luuk.model.Specialty;
 
 @Repository
 public interface SpecialtyRepository extends JpaRepository<Specialty, Long> {
-	Specialty findById(int specialtyId);
+	Specialty findById(long specialtyId);
 	Specialty findBySpecialtyname(String specialtyname);
 }

@@ -5,7 +5,7 @@ public class Blender {
    Cylinder start_cyl;	
    Cylinder current_cyl;
    Cylinder desired_cyl;
-   BlendMethod blendMethod;
+   String blendMethod;
    Compressor compressor;
    BlendPlan blendPlan;
    double topOff_o2_fraction;
@@ -20,7 +20,7 @@ public class Blender {
 	   this.topOff_o2_fraction = 0.21;
    }
    
-   public Blender(Cylinder start_cyl, Cylinder current_cyl, Cylinder desired_cyl, Compressor compressor){
+   public Blender(Cylinder start_cyl, Cylinder desired_cyl, Compressor compressor){
 	 this.start_cyl = start_cyl;
 	 //set the current_cylinder equal to the starting_cylinder
      this.current_cyl = start_cyl;
@@ -35,7 +35,7 @@ public class Blender {
        double delta_n2 = desired_cyl.n2_vol - start_cyl.n2_vol;
        double delta_he = desired_cyl.he_vol - start_cyl.he_vol;
        double delta_press = desired_cyl.cyl_press - start_cyl.cyl_press;
-       int size = start_cyl.cyl_size;
+       double size = start_cyl.cyl_size;
        Cylinder delta_cyl = new Cylinder(delta_o2, delta_n2, delta_he, delta_press);
        //delta_cyl.printAttribute();
        return delta_cyl;
@@ -46,7 +46,6 @@ public class Blender {
        c.n2_vol = desired_cyl.n2_vol - current_cyl.n2_vol;
        c.he_vol = desired_cyl.he_vol - current_cyl.he_vol;
        c.cyl_press = desired_cyl.cyl_press - current_cyl.cyl_press;
-       c.cyl_size = current_cyl.cyl_size;
        c.printAttribute();
        return c;
    }
@@ -75,11 +74,11 @@ public void setDesired_cyl(Cylinder desired_cyl) {
 	this.desired_cyl = desired_cyl;
 }
 
-public BlendMethod getBlendMethod() {
+public String getBlendMethod() {
 	return blendMethod;
 }
 
-public void setBlendMethod(BlendMethod blendMethod) {
+public void setBlendMethod(String blendMethod) {
 	this.blendMethod = blendMethod;
 }
 

@@ -5,7 +5,7 @@ public class Cylinder {
    double o2_vol;
    double n2_vol;
    double he_vol;
-   int cyl_size;
+   double cyl_size;
    double cyl_press;
    
    //Constructors
@@ -17,7 +17,7 @@ public class Cylinder {
 	   this.cyl_press = 0.0;
    }
    
-   public Cylinder(double o2_frac, double n2_frac, double he_frac, int cyl_size, double cyl_press){
+   public Cylinder(double o2_frac, double n2_frac, double he_frac, double cyl_size, double cyl_press){
      this.o2_vol = o2_frac * cyl_size * cyl_press;
      this.n2_vol = n2_frac * cyl_size * cyl_press;
      this.he_vol = he_frac * cyl_size * cyl_press;
@@ -32,8 +32,9 @@ public class Cylinder {
 	     this.he_vol = he_vol;
 	     this.cyl_press = cyl_press;
 	     this.printAttribute();
-	   }   
+   }  
    
+  
    public Cylinder addGas(Cylinder c, Gasses gas, double vol) {
 	   switch(gas) {
 	   		case OXYGEN:
@@ -80,5 +81,47 @@ public class Cylinder {
 		  System.out.println("delta pressure: " + cyl_press);
 		  //System.out.println("--------------------- ");
 	   }
+
+public double getO2_vol() {
+	return o2_vol;
+}
+
+public void setO2_vol(double o2_vol) {
+	this.o2_vol = o2_vol;
+}
+
+public double getN2_vol() {
+	return n2_vol;
+}
+
+public void setN2_vol(double n2_vol) {
+	this.n2_vol = n2_vol;
+}
+
+public double getHe_vol() {
+	return he_vol;
+}
+
+public void setHe_vol(double he_vol) {
+	this.he_vol = he_vol;
+}
+
+public double getCyl_size() {
+	return cyl_size;
+}
+
+public void setCyl_size(double cyl_size) {
+	this.cyl_size = cyl_size;
+}
+
+public double getCyl_press() {
+	return cyl_press;
+}
+
+public void setCyl_press(double cyl_press) {
+	this.cyl_press = cyl_press;
+}
+   
+   
 
 }
