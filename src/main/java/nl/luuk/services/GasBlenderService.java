@@ -41,7 +41,7 @@ public class GasBlenderService {
 		return new BlenderDao();
 	}
 	
-	public BlendPlan startBlender(BlenderDao bd) {
+	public static BlendPlan startBlender(BlenderDao bd) {
 		
 		//Create the cylinder from the BlenderDao
 		Cylinder c1 = new Cylinder(bd.getC1_o2()/100, bd.getC1_n2()/100, bd.getC1_he()/100, bd.getC1_size(), bd.getC1_pressure());
@@ -58,11 +58,11 @@ public class GasBlenderService {
 		switch (bd.getBm()) {
 		case "PARTIAL":
 			PartialBlender pb = new PartialBlender(c1,c2,comp);
-			plan = pb.blend(pb.generateDelta(), bd.getTopOff());
+			plan = pb.blend(pb.generateDelta(), bd.getTopOff()/100);
 			break;
 		case "CONTINUES":
 			ContinuesBlender cb = new ContinuesBlender(c1,c2,comp);
-			plan = cb.blend(cb.generateDelta(), bd.getTopOff());
+			plan = cb.blend(cb.generateDelta(), bd.getTopOff()/100);
 			break;
 		}
 

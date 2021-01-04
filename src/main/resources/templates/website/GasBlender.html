@@ -9,6 +9,7 @@
 	src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
+<link rel="stylesheet" href="styles.css">
 <script
 	src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 
@@ -16,6 +17,7 @@
 	src="https://visjs.github.io/vis-network/standalone/umd/vis-network.min.js"></script>
 <script src="../../static/elements.js"></script>
 <script src="/checkbox.js"></script>
+<script src="/blendervalidation.js"></script>
 
 
 
@@ -40,7 +42,9 @@
 					<div class="ui divider"></div>
 
 
-					<form class="ui form" method="post" th:action="@{'/gasblender/' + ${blenderdao.blenderId}}"
+					<form class="ui form" name="blenderinput"
+						onsubmit="return checkInput()" method="post"
+						th:action="@{'/gasblender/' + ${blenderdao.blenderId}}"
 						style="margin-left: 25px; margin-right: 25px;"
 						th:object="${blenderdao}">
 						<div class="ui grid">
@@ -63,12 +67,14 @@
 								</div>
 								<div class="column">
 									<input placeholder="current oxygen content, integer 0-100"
-										type="text" th:name="c1_o2"
+										required type="text" pattern="[0-9]{1..3}"
+										title="number between 0 - 100" th:name="c1_o2"
 										th:attr="value = ${blenderdao.c1_o2}">
 								</div>
 								<div class="column">
 									<input placeholder="desired oxygen content, integer 0-100"
-										type="text" th:name="c2_o2" th:value="${blenderdao.c2_o2}">
+										required type="text" th:name="c2_o2"
+										th:value="${blenderdao.c2_o2}">
 								</div>
 							</div>
 
@@ -78,11 +84,13 @@
 								</div>
 								<div class="column">
 									<input placeholder="current nitrogen content, integer 0-100"
-										type="text" th:name="c1_n2" th:value="${blenderdao.c1_n2}">
+										required type="text" th:name="c1_n2"
+										th:value="${blenderdao.c1_n2}">
 								</div>
 								<div class="column">
 									<input placeholder="desired nitrogen content, integer 0-100"
-										type="text" th:name="c2_n2" th:value="${blenderdao.c2_n2}">
+										required type="text" th:name="c2_n2"
+										th:value="${blenderdao.c2_n2}">
 								</div>
 							</div>
 
@@ -92,11 +100,13 @@
 								</div>
 								<div class="column">
 									<input placeholder="current helium content, integer 0-100"
-										type="text" th:name="c1_he" th:value="${blenderdao.c1_he}">
+										required type="text" th:name="c1_he"
+										th:value="${blenderdao.c1_he}">
 								</div>
 								<div class="column">
 									<input placeholder="desired helium content, integer 0-100"
-										type="text" th:name="c2_he" th:value="${blenderdao.c2_he}">
+										required type="text" th:name="c2_he"
+										th:value="${blenderdao.c2_he}">
 								</div>
 							</div>
 
@@ -106,27 +116,38 @@
 								</div>
 								<div class="column">
 									<input placeholder="cylinder size, integer 0-100" type="text"
-										th:name="c1_he" th:value="${blenderdao.c1_size}">
+										required th:name="c1_size" th:value="${blenderdao.c1_size}">
 								</div>
 								<div class="column">
 									<input placeholder="cylinder size, integer 0-100" type="text"
-										th:name="c2_he" th:value="${blenderdao.c2_size}">
+										required th:name="c2_size" th:value="${blenderdao.c2_size}">
 								</div>
 							</div>
 
 							<div class="three column row">
 								<div class="column">
-									<label>Cylinder Size</label>
+									<label>Cylinder Pressure</label>
 								</div>
 								<div class="column">
 									<input placeholder="current cylinder pressure, integer 0-100"
-										type="text" th:name="c1_he"
+										required type="text" th:name="c1_pressure"
 										th:value="${blenderdao.c1_pressure}">
 								</div>
 								<div class="column">
 									<input placeholder="desired cylinder pressure, integer 0-100"
-										type="text" th:name="c2_he"
+										required type="text" th:name="c2_pressure"
 										th:value="${blenderdao.c2_pressure}">
+								</div>
+							</div>
+
+							<div class="three column row">
+								<div class="column">
+									<label>Oxygen Content Top Off Gas</label>
+								</div>
+								<div class="column">
+									<input placeholder="current cylinder pressure, integer 0-999"
+										required type="text" th:name="topOff"
+										th:value="${blenderdao.topOff}">
 								</div>
 							</div>
 
@@ -137,8 +158,8 @@
 						<h4 class="ui dividing header">Blending Method</h4>
 						<div class="column">
 							<div class="ui radio checkbox">
-								<input type="radio" name="partial" value="PARTIAL"> 
-								<label>Partial Blending </label>
+								<input type="radio" name="partial" value="PARTIAL"> <label>Partial
+									Blending </label>
 							</div>
 						</div>
 						<div class="column">
@@ -152,6 +173,14 @@
 							<button class="ui teal button"
 								style="margin-left: 5px; margin-right: 25px;" type="submit">Blend!</button>
 						</div>
+						<div class="ui error message"></div>
+
+						<h4 class="ui dividing header">Blend Plan</h4>
+						<div class="content" th:each="step:${blendPlan}">
+							<div th:text="${step}"></div>
+						</div>
+
+						
 
 					</form>
 		</div>

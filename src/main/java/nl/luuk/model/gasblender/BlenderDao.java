@@ -1,5 +1,9 @@
 package nl.luuk.model.gasblender;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -50,15 +54,41 @@ public class BlenderDao {
 	@Column(name="topOff")
 	double topOff;
 	
-	@Column(name="blendplan", columnDefinition="varchar2(100)")
+	@Column(name="blendplan", columnDefinition="varchar2(1000)")
 	String blendPlan;
 	
 	public BlenderDao() {
 		this.bm = "PARTIAL";
 		this.topOff = 21;
+		this.blendPlan="Your blendplan";
+	}
+	
+	public BlenderDao(long id) {
+		this.blenderId = id;
 	}
 	
 	
+	
+
+	public BlenderDao(Long blenderId, double c1_o2, double c1_n2, double c1_he, double c1_size, double c1_pressure,
+			double c2_o2, double c2_n2, double c2_he, double c2_size, double c2_pressure, String bm, double topOff,
+			String blendPlan) {
+		super();
+		this.blenderId = blenderId;
+		this.c1_o2 = c1_o2;
+		this.c1_n2 = c1_n2;
+		this.c1_he = c1_he;
+		this.c1_size = c1_size;
+		this.c1_pressure = c1_pressure;
+		this.c2_o2 = c2_o2;
+		this.c2_n2 = c2_n2;
+		this.c2_he = c2_he;
+		this.c2_size = c2_size;
+		this.c2_pressure = c2_pressure;
+		this.bm = bm;
+		this.topOff = topOff;
+		this.blendPlan = blendPlan;
+	}
 
 	public Long getBlenderId() {
 		return blenderId;
@@ -184,6 +214,11 @@ public class BlenderDao {
 
 	public String getBlendPlan() {
 		return blendPlan;
+	}
+	
+	public List<String> getListBlendPlan() {
+		List<String> listBlendPlan = new ArrayList<String>(Arrays.asList(blendPlan.split(",")));
+		return listBlendPlan;
 	}
 
 

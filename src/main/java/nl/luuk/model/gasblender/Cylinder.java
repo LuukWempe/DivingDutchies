@@ -52,7 +52,7 @@ public class Cylinder {
 	   			c.cyl_press += vol/c.cyl_size;
 	   			break;
 	   }
-	   c.printAttribute("gas added to cylinder");
+	   c.printAttribute("gas added to cylinder " + vol + " " + gas);
 	   return c;
    }
    

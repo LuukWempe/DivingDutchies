@@ -18,6 +18,7 @@ public class PartialBlender extends Blender {
 	  //TopOff gas needs to be a fraction of Oxygen and Nitrogen.
 	  //Determine how much O2 needs to be added if > 0, pure O2 is added first, if < 0, some gas needs to be vented first
 	  double o2_add = (delta.o2_vol - ((delta.n2_vol / (1-topOff_o2_fraction)) * topOff_o2_fraction));
+	  System.out.println("start of blend() " + o2_add);
 	  double gas_vent = 0;
 	  
 	  //if there is to much oxygen in the cylinder this loop will vent the cylinder 1/2 bar at the time and check is this is enough
@@ -25,7 +26,8 @@ public class PartialBlender extends Blender {
 		  current_cyl.releasePressure(0.5);
 		  gas_vent += 0.5;
 		  delta = generateDelta(delta);
-		  o2_add = (delta.o2_vol - ((delta.n2_vol / (1-topOff_o2_fraction)) * topOff_o2_fraction));		  
+		  o2_add = (delta.o2_vol - ((delta.n2_vol / (1-topOff_o2_fraction)) * topOff_o2_fraction));	
+		  System.out.println("in while loop" + o2_add + gas_vent);
 	  }
 	  	  
 	  // If gas was vented, add this to the tasklist

@@ -11,6 +11,8 @@ import nl.luuk.model.gasblender.PartialBlender;
 import nl.luuk.services.DiverService;
 import nl.luuk.services.GasBlenderService;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -70,6 +72,7 @@ public class WebsiteController {
 	@GetMapping("/gasblender")
 	public String gasblenderInit(Model model) {
 		BlenderDao blenderdao = new BlenderDao();
+		blenderDaoRepository.save(blenderdao);
 				model.addAttribute("blenderdao", blenderDaoRepository.findByBlenderId(blenderdao.getBlenderId()));
 		return "website/gasblender";
 	}
@@ -77,6 +80,7 @@ public class WebsiteController {
 	@GetMapping("/gasblender/{blenderId}")
 	public String gasblender(Model model, @PathVariable("blenderId") long blenderId) {
 		model.addAttribute("blenderdao", blenderDaoRepository.findByBlenderId(blenderId));
+		model.addAttribute("blendPlan", blenderDaoRepository.findByBlenderId(blenderId).getListBlendPlan());
 		return "website/gasblender";
 	}
 	
@@ -86,10 +90,12 @@ public class WebsiteController {
 		blenderDaoRepository.save(blenderDao);
 		
 		//get de blenderId from the repository
-		BlendPlan plan = gbs.startBlender(blenderDaoRepository.findByBlenderId(blenderId));
+		BlendPlan plan = gbs.startBlender(blenderDaoRepository.findByBlenderId(blenderDao.getBlenderId()));
 		blenderDao.setBlendPlan(plan.toString());
+		blenderDaoRepository.save(blenderDao);
+		String id = Long.toString(blenderDao.getBlenderId());
 				
-		return "redirect:/gasblender/" + blenderId;
+		return "redirect:/gasblender/"+ id;
 	}
 
 	

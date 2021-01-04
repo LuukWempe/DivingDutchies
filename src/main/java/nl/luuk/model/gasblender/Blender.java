@@ -37,7 +37,8 @@ public class Blender {
        double delta_press = desired_cyl.cyl_press - start_cyl.cyl_press;
        double size = start_cyl.cyl_size;
        Cylinder delta_cyl = new Cylinder(delta_o2, delta_n2, delta_he, delta_press);
-       //delta_cyl.printAttribute();
+       System.out.println("inside generateDelta() ");
+       delta_cyl.printAttribute();
        return delta_cyl;
    }
    
