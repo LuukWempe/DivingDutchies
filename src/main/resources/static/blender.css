@@ -1,0 +1,13 @@
+
+input:focus {
+	border: 3px solid green;
+}
+
+input:required:valid {
+  box-sizing: border-box;
+  border-color: green;
+}
+input:required:invalid {
+  border-width: 2px;
+  border-color: red;
+}
