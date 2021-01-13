@@ -8,6 +8,7 @@ class YoungdiversApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }

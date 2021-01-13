@@ -2,6 +2,7 @@ package nl.luuk.controller;
 
 import nl.luuk.database.BlenderDaoRepository;
 import nl.luuk.database.DiverRepository;
+import nl.luuk.database.SpecialtyRepository;
 import nl.luuk.model.gasblender.BlendMethod;
 import nl.luuk.model.gasblender.BlendPlan;
 import nl.luuk.model.gasblender.Blender;
@@ -10,6 +11,7 @@ import nl.luuk.model.gasblender.ContinuesBlender;
 import nl.luuk.model.gasblender.PartialBlender;
 import nl.luuk.services.DiverService;
 import nl.luuk.services.GasBlenderService;
+import nl.luuk.services.SpecialtyService;
 
 import java.util.List;
 
@@ -41,6 +43,12 @@ public class WebsiteController {
 	@Autowired
 	private DiverRepository diverRepository;
 	
+	@Autowired
+	private SpecialtyRepository specialtyRepository;
+	
+	@Autowired
+	private SpecialtyService specialtyService;
+	
 	@Autowired  //more session friendly
 	private BlenderDaoRepository blenderDaoRepository;
 	
@@ -60,7 +68,8 @@ public class WebsiteController {
 	}
 	
 	@GetMapping("/ssispecialty")
-	public String ssispecialty() {
+	public String ssispecialty(Model model) {
+		model.addAttribute("specialties", specialtyService.getTopSpecialties(4));
 		return "website/ssispecialty";
 	}
 	

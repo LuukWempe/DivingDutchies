@@ -1,6 +1,11 @@
 package nl.luuk.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import nl.luuk.database.SpecialtyRepository;
@@ -20,5 +25,10 @@ public class SpecialtyService {
 	public void addSpecialty(String specialtyName) {
 		Specialty specialty = new Specialty(specialtyName);
 		specialtyRepository.save(specialty);
+	}
+	
+	public List<Specialty> getTopSpecialties(int length){
+		Page<Specialty> topSpecialties = specialtyRepository.findAll(PageRequest.of(0,  length, Sort.by("id").ascending()));
+		return topSpecialties.getContent();
 	}
 }

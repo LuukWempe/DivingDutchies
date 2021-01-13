@@ -18,43 +18,43 @@ public class BlenderDao {
 	@GeneratedValue
 	Long blenderId;
 	
-	@Column(name="c1_o2")
+	@Column(name="c1_o2", columnDefinition="DECIMAL(2)")
 	double c1_o2;
 	
-	@Column(name="c1_n2")
+	@Column(name="c1_n2", columnDefinition="DECIMAL(2)")
 	double c1_n2;
 	
-	@Column(name="c1_he")
+	@Column(name="c1_he", columnDefinition="DECIMAL(2)")
 	double c1_he;
 	
-	@Column(name="c1_size")
+	@Column(name="c1_size", columnDefinition="DECIMAL(2)")
 	double c1_size;
 	
-	@Column(name="c1_pressure")
+	@Column(name="c1_pressure", columnDefinition="DECIMAL(2)")
 	double c1_pressure;
 	
-	@Column(name="c2_o2")
+	@Column(name="c2_o2", columnDefinition="DECIMAL(2)")
 	double c2_o2;
 	
-	@Column(name="c2_n2")
+	@Column(name="c2_n2", columnDefinition="DECIMAL(2)")
 	double c2_n2;
 	
-	@Column(name="c2_he")
+	@Column(name="c2_he", columnDefinition="DECIMAL(2)")
 	double c2_he;
 	
-	@Column(name="c2_size")
+	@Column(name="c2_size", columnDefinition="DECIMAL(2)")
 	double c2_size;
 	
-	@Column(name="c2_pressure")
+	@Column(name="c2_pressure", columnDefinition="DECIMAL(2)")
 	double c2_pressure;
 	
-	@Column(name="blendMethod", columnDefinition="varchar2(20)")
+	@Column(name="blendMethod", columnDefinition="VARCHAR(20)")
 	String bm;
 	
-	@Column(name="topOff")
+	@Column(name="topOff", columnDefinition="DECIMAL(2)")
 	double topOff;
 	
-	@Column(name="blendplan", columnDefinition="varchar2(1000)")
+	@Column(name="blendplan", columnDefinition="VARCHAR(1000)")
 	String blendPlan;
 	
 	public BlenderDao() {

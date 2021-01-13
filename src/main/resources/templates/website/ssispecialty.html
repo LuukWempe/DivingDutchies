@@ -28,6 +28,10 @@
                 <h1>SSI Specialties</h1>
 
                 <div class="ui divider"></div>
+                
+                <div class="ui segment" th:each="specialty:${specialties}">
+					<h3 th:text="${specialty.id} + ' ' + ${specialty.specialtyname}"></h3>
+				</div>
             </div>
     </div>
         
