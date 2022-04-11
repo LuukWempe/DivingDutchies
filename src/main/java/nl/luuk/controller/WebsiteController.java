@@ -2,6 +2,7 @@ package nl.luuk.controller;
 
 import nl.luuk.database.DiverRepository;
 import nl.luuk.services.DiverService;
+import nl.luuk.services.SpecialtyService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +28,11 @@ public class WebsiteController {
 	private DiverRepository diverRepository;
 	
 	@Autowired
+	private SpecialtyService specialtyService;
+	
+	@Autowired
 	public WebsiteController() {}
+
 	
 	private static final Logger logger = LoggerFactory.getLogger(WebsiteController.class);
 	
@@ -37,13 +42,19 @@ public class WebsiteController {
 	}
 	
 	@GetMapping("/ssispecialty")
-	public String ssispecialty() {
+	public String ssispecialty(Model model) {
+		model.addAttribute("specialties", specialtyService.getAllSpecialties());
 		return "website/ssispecialty";
 	}
 	
 	@GetMapping("/photos")
 	public String photos() {
 		return "website/photos";
+	}
+	
+	@GetMapping("/gasblender")
+	public String gasblender() {
+		return "website/gasblender";
 	}
 	
 	@GetMapping("/calendar")
@@ -54,6 +65,11 @@ public class WebsiteController {
 	@GetMapping("/contactdetails")
 	public String contactdetails() {
 		return "website/contactdetails";
+	}
+	
+	@GetMapping("/error")
+	public String error() {
+		return "/error";
 	}
 	
 	

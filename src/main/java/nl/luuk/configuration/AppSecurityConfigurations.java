@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import nl.luuk.services.DiverService;
+import nl.luuk.services.SpecialtyService;
 
 import javax.sql.DataSource;
 
@@ -66,6 +67,9 @@ public class AppSecurityConfigurations extends WebSecurityConfigurerAdapter {
     
     @Autowired
     public DiverService diverService;
+    
+    @Autowired
+    public SpecialtyService specialtyService;
 
   
     @Autowired
@@ -85,7 +89,6 @@ public class AppSecurityConfigurations extends WebSecurityConfigurerAdapter {
         
         //Admin
         diverService.registerDiver("luukwempe","ADMIN", "Luuk", "Wempe", encoder.encode("hallo"), "luukwempe@hotmail.com", true, true);
-
         }
 
 }

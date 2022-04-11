@@ -5,7 +5,7 @@ import java.sql.Date;
 
 
 @Entity
-@Table(name="Specialty")
+@Table(name="SPECIALTY")
 public class Specialty {
 
 	
@@ -14,13 +14,13 @@ public class Specialty {
 	private long id; 
 	
 	@Column(name="specialtyname")
-	private String specialtyname;
+	private String specialtyName;
 
 	//Constructors
 	public Specialty() {}
 	
 	public Specialty(String specialtyName) {
-		this.specialtyname = specialtyName;
+		this.specialtyName = specialtyName;
 	}
 	
 	
@@ -33,12 +33,12 @@ public class Specialty {
 		this.id = id;
 	}
 
-	public String getSpecialtyname() {
-		return specialtyname;
+	public String getSpecialtyName() {
+		return specialtyName;
 	}
 
-	public void setSpecialtyname(String specialtyname) {
-		this.specialtyname = specialtyname;
+	public void setSpecialtyName(String specialtyName) {
+		this.specialtyName = specialtyName;
 	}
 	
 	
